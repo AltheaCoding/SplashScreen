@@ -274,28 +274,32 @@
           <div className="min-h-screen bg-cyan-50 flex items-center justify-center p-4 font-sans">
             <main className="bg-white rounded-2xl shadow-lg w-full max-w-md mx-auto overflow-hidden">
               <header 
-                className="flex justify-center items-center gap-4 py-4 px-4"
+                className="flex justify-center items-center gap-8 py-4 px-6"
                 style={{ backgroundColor: '#fffbeb' }}
               >
-                <img 
-                    src="https://github.com/AltheaCoding/image-hosting/blob/main/Solution_%20(5).PNG?raw=true" 
-                    alt="QRAR Logo" 
-                    className="h-14 w-auto"
-                />
-                <div>
-                    <p className="text-2xl font-bold text-stone-800">qrar.com</p>
-                    <p className="text-xl text-stone-600 font-semibold mt-1">安心找回中心</p>
+                <div className="flex items-center gap-2">
+                    <img 
+                        src="https://github.com/AltheaCoding/image-hosting/blob/main/Solution_%20(5).PNG?raw=true" 
+                        alt="QRAR Logo" 
+                        className="h-8 w-auto"
+                    />
+                    <div>
+                        <p className="text-lg font-bold text-stone-800">qrar.com</p>
+                        <p className="text-base text-stone-600 font-semibold">安心找回中心</p>
+                    </div>
                 </div>
+                <h2 className="text-2xl font-bold text-amber-800 whitespace-nowrap">感謝您的幫助！</h2>
               </header>
               
               <div className="p-6 md:p-8 space-y-6">
-                <p className="text-center text-stone-600 text-sm my-4">此 QR code 可協助尋找失物或走散親友。</p>
-
-                <img 
-                  src="https://github.com/AltheaCoding/HandDrawHero/blob/main/Three_Steps_.png?raw=true" 
-                  alt="Three steps: Scan QR, Contact Anonymously, and Receive Thanks & Rewards."
-                  className="w-full h-auto rounded-xl transform scale-105"
-                />
+                <div>
+                  <img 
+                    src="https://github.com/AltheaCoding/SplashScreen/blob/main/steps%20with%20mutiple%20ends.png?raw=true" 
+                    alt="Flowchart of steps after scanning QR: 1. Scan QR Code, 2. Contact Anonymously via Line or Message, 3. Choose to deliver to a service point, wait for the owner, or place the item in a safe spot."
+                    className="w-full h-auto rounded-xl transform scale-110"
+                  />
+                  <p className="text-center text-stone-600 font-semibold mt-4">此 QR code 可協助尋找失物或走散親友。</p>
+                </div>
               
                 <div className="space-y-4 pt-4">
                   <div>
@@ -304,7 +308,7 @@
                       <span> Line 匿名 傳送</span>
                     </LineButton>
                     <p className="text-center text-xs text-stone-500 mt-2 px-4">
-                      感謝您的協助，幫助完成後將贈送 100 則訊息額度。
+                      幫助完成後將贈送 100 則訊息額度。
                     </p>
                   </div>
                 </div>
