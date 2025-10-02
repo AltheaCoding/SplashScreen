@@ -116,83 +116,66 @@
         );
       };
 
-      // --- From components/ContactModal.tsx ---
-      const ContactModal = ({ isOpen, onClose }) => {
+      // --- From components/DirectContactForm.tsx ---
+      const DirectContactForm = () => {
         const [message, setMessage] = useState('');
-
-        if (!isOpen) return null;
+        const [contact, setContact] = useState('');
 
         const isButtonDisabled = message.trim() === '';
+        
+        const handleSubmit = () => {
+            alert('Message sent!');
+            setMessage('');
+            setContact('');
+        };
 
         return (
-          <div 
-            className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 transition-opacity duration-300"
-            onClick={onClose}
-          >
-            <div 
-              className="bg-white rounded-2xl shadow-xl w-full max-w-md p-6 md:p-8 space-y-6 relative transform transition-all duration-300 scale-95 opacity-0 animate-fade-in-scale"
-              onClick={(e) => e.stopPropagation()}
-              style={{ animation: 'fade-in-scale 0.3s forwards' }}
-            >
-              <button onClick={onClose} className="absolute top-4 right-4 text-stone-400 hover:text-stone-600 transition-colors">
-                <CloseIcon />
-              </button>
-
+          <div className="space-y-6">
               <header className="text-center">
-                <h2 className="text-2xl font-bold text-stone-800">其他聯絡方式</h2>
-                <p className="text-stone-600 mt-2">請透過以下方式留下您的訊息。</p>
+                <h2 className="text-xl font-bold text-white">沒有Line，要留言</h2>
+                <p className="text-stone-300 mt-2">請透過以下方式留下您的訊息。</p>
               </header>
 
               <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
                 <div>
-                  <label htmlFor="contact-method" className="block text-sm font-medium text-stone-700 mb-1">聯絡方式 (可不填)</label>
+                  <label htmlFor="contact-method" className="block text-sm font-medium text-stone-300 mb-1">聯絡方式 (可不填)</label>
                   <input 
                     type="text" 
                     id="contact-method"
                     placeholder="例如：Email 或 其他通訊軟體"
-                    className="w-full px-3 py-2 bg-stone-50 border border-stone-300 text-stone-900 placeholder:text-stone-400 rounded-md focus:ring-amber-500 focus:border-amber-500 transition"
+                    className="w-full px-3 py-2 border border-stone-300 text-stone-900 placeholder:text-stone-500 rounded-md focus:ring-amber-500 focus:border-amber-500 transition"
+                    style={{ backgroundColor: '#fffbeb' }}
+                    value={contact}
+                    onChange={(e) => setContact(e.target.value)}
                   />
                 </div>
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-stone-700 mb-1">您的訊息</label>
+                  <label htmlFor="message" className="block text-sm font-medium text-stone-300 mb-1">您的訊息</label>
                   <textarea 
                     id="message" 
                     rows={4}
                     placeholder="請在此輸入您想傳達給失主的訊息..."
-                    className="w-full px-3 py-2 bg-stone-50 border border-stone-300 text-stone-900 placeholder:text-stone-400 rounded-md focus:ring-amber-500 focus:border-amber-500 transition"
+                    className="w-full px-3 py-2 border border-stone-300 text-stone-900 placeholder:text-stone-500 rounded-md focus:ring-amber-500 focus:border-amber-500 transition"
+                    style={{ backgroundColor: '#fffbeb' }}
                     required
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                   ></textarea>
                 </div>
                 <PrimaryButton 
-                  onClick={() => { alert('Message sent!'); onClose(); }}
+                  onClick={handleSubmit}
                   disabled={isButtonDisabled}
                 >
                   傳送匿名訊息
                 </PrimaryButton>
               </form>
 
-              <p className="text-xs text-center text-stone-500">
+              <p className="text-xs text-center text-stone-400">
                 您的聯絡方式將被加密處理，僅用於本次協尋聯繫。
               </p>
-
-              <style>{`
-                @keyframes fade-in-scale {
-                  from {
-                    transform: scale(0.95);
-                    opacity: 0;
-                  }
-                  to {
-                    transform: scale(1);
-                    opacity: 1;
-                  }
-                }
-              `}</style>
-            </div>
           </div>
         );
-      };
+    };
 
       // --- From components/FAQ.tsx ---
       const faqData = [
@@ -268,8 +251,6 @@
 
       // --- From App.tsx ---
       const App = () => {
-        const [isModalOpen, setIsModalOpen] = useState(false);
-
         return (
           <div className="min-h-screen bg-cyan-50 flex items-center justify-center p-4 font-sans">
             <main className="bg-white rounded-2xl shadow-lg w-full max-w-md mx-auto overflow-hidden">
@@ -314,14 +295,11 @@
                 </div>
               </div>
               
-              <div className="p-6 md:p-8 space-y-6" style={{ backgroundColor: '#212c42' }}>
-                <SecondaryButton onClick={() => setIsModalOpen(true)}>
-                  沒有Line，要留言
-                </SecondaryButton>
+              <div className="p-6 md:p-8 space-y-6" style={{ backgroundColor: '#222b45' }}>
+                <DirectContactForm />
                 
                 <footer 
-                  className="pt-4 text-left space-y-1" 
-                  style={{ color: '#FBF8F1', fontSize: '0.6rem', lineHeight: '1.5' }}
+                  className="pt-4 text-left space-y-1 text-stone-300 text-xs"
                 >
                   <p>安全提醒：請認明 <a href="https://qrar.com" target="_blank" rel="noopener noreferrer" className="underline hover:text-amber-400 transition-colors">https://qrar.com</a> 官方網址。</p>
                   <p>本系統絕不會向您索取個資、密碼或金融帳戶。有任何疑慮請直撥 165 反詐騙專線。</p>
@@ -330,8 +308,6 @@
                 <FAQ isDark={true} />
               </div>
             </main>
-            
-            <ContactModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
           </div>
         );
       };
