@@ -133,7 +133,6 @@
           <div className="space-y-6">
               <header className="text-center">
                 <h2 className="text-xl font-bold text-white">沒有Line，要留言</h2>
-                <p className="text-stone-300 mt-2">請透過以下方式留下您的訊息。</p>
               </header>
 
               <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
@@ -255,28 +254,28 @@
           <div className="min-h-screen bg-cyan-50 flex items-center justify-center p-4 font-sans">
             <main className="bg-white rounded-2xl shadow-lg w-full max-w-md mx-auto overflow-hidden">
               <header 
-                className="flex justify-center items-center gap-8 py-4 px-6"
+                className="flex justify-between items-center py-4 px-6"
                 style={{ backgroundColor: '#fffbeb' }}
               >
-                <div className="flex items-center gap-2">
-                    <img 
-                        src="https://github.com/AltheaCoding/image-hosting/blob/main/Solution_%20(5).PNG?raw=true" 
-                        alt="QRAR Logo" 
-                        className="h-8 w-auto"
-                    />
-                    <div>
-                        <p className="text-lg font-bold text-stone-800">qrar.com</p>
-                        <p className="text-base text-stone-600 font-semibold">安心找回中心</p>
-                    </div>
+                <div className="flex items-center gap-3">
+                  <img 
+                      src="https://github.com/AltheaCoding/image-hosting/blob/main/Solution_%20(5).PNG?raw=true" 
+                      alt="QRAR Logo" 
+                      className="h-8 w-auto"
+                  />
+                  <div>
+                      <p className="text-xl font-bold text-stone-800 leading-tight">qrar.com</p>
+                      <p className="text-base text-stone-600 font-semibold leading-tight">安心找回中心</p>
+                  </div>
                 </div>
-                <h2 className="text-2xl font-bold text-amber-800 whitespace-nowrap">感謝您的幫助！</h2>
+                <p className="text-xl font-bold text-amber-700">感謝您熱心幫助!</p>
               </header>
               
               <div className="p-6 md:p-8 space-y-6">
                 <div>
                   <img 
-                    src="https://github.com/AltheaCoding/SplashScreen/blob/main/steps%20with%20mutiple%20ends.png?raw=true" 
-                    alt="Flowchart of steps after scanning QR: 1. Scan QR Code, 2. Contact Anonymously via Line or Message, 3. Choose to deliver to a service point, wait for the owner, or place the item in a safe spot."
+                    src="https://github.com/AltheaCoding/SplashScreen/blob/main/ThreeSteps.gif?raw=true" 
+                    alt="Animated GIF showing the three steps: 1. Scan QR Code, 2. Contact Anonymously, 3. Help is on the way."
                     className="w-full h-auto rounded-xl transform scale-110"
                   />
                   <p className="text-center text-stone-600 font-semibold mt-4">此 QR code 可協助尋找失物或走散親友。</p>
