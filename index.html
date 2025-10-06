@@ -18,7 +18,7 @@
 
     <script type="text/babel">
       // De-structure React hooks for convenience
-      const { useState } = React;
+      const { useState, useEffect } = React;
 
       // --- From components/Icons.tsx ---
       const ShieldCheckIcon = ({ className }) => (
@@ -237,6 +237,54 @@
           </section>
         );
       };
+      
+      // --- New HeroImage component ---
+      const HeroImage = () => {
+          const [isLoaded, setIsLoaded] = useState(false);
+          const imageUrl = "https://github.com/AltheaCoding/SplashScreen/blob/main/ThreeSteps.gif?raw=true";
+
+          useEffect(() => {
+              // This avoids creating multiple style tags if the component re-renders.
+              if (document.getElementById('pulse-animation-style')) return;
+
+              const style = document.createElement('style');
+              style.id = 'pulse-animation-style';
+              style.textContent = `
+                  @keyframes pulse {
+                      50% { opacity: .5; }
+                  }
+                  .animate-pulse-fast {
+                      animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+                  }
+              `;
+              document.head.append(style);
+          }, []);
+
+          return (
+              <div>
+                  {/* The container maintains the aspect ratio and clips the scaled image */}
+                  <div 
+                      className="relative w-full rounded-xl transform scale-110 overflow-hidden" 
+                      style={{ paddingTop: '56.25%' /* 16:9 Aspect Ratio */ }}
+                  >
+                      {/* Placeholder with a pulsing animation */}
+                      {!isLoaded && (
+                          <div className="absolute top-0 left-0 w-full h-full bg-stone-200 animate-pulse-fast"></div>
+                      )}
+                      
+                      {/* The actual image, fades in when loaded */}
+                      <img 
+                          src={imageUrl} 
+                          alt="Animated GIF showing the three steps: 1. Scan QR Code, 2. Contact Anonymously, 3. Help is on the way."
+                          onLoad={() => setIsLoaded(true)}
+                          className={`absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-500 ease-in-out ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
+                      />
+                  </div>
+                  <p className="text-center text-stone-600 font-semibold mt-4">此 QR code 可協助尋找失物或走散親友。</p>
+              </div>
+          );
+      };
+
 
       // --- From App.tsx ---
       const App = () => {
@@ -262,14 +310,7 @@
               </header>
               
               <div className="p-6 md:p-8 space-y-6">
-                <div>
-                  <img 
-                    src="https://github.com/AltheaCoding/SplashScreen/blob/main/ThreeSteps.gif?raw=true" 
-                    alt="Animated GIF showing the three steps: 1. Scan QR Code, 2. Contact Anonymously, 3. Help is on the way."
-                    className="w-full h-auto rounded-xl transform scale-110"
-                  />
-                  <p className="text-center text-stone-600 font-semibold mt-4">此 QR code 可協助尋找失物或走散親友。</p>
-                </div>
+                <HeroImage />
               
                 <div className="space-y-4 pt-4">
                   <div>
